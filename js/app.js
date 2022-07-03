@@ -67,50 +67,62 @@ const parentUl = document.querySelector('#navbar__list');
 
 //create navbar items
 for(let i = 0;  i < allSections.length; i++){       
-const currentSection = allSections[i];
-const dataNavnumber = currentSection.dataset.nav;
-
-const lis = document.createElement('li');
-const liItem = document.createElement('a');
-liItem.href="#section"+ (i + 1);
-liItem.innerHTML = dataNavnumber; 
-liItem.classList.add('menu__link');
-parentUl.append(lis);
-lis.append(liItem);
-}
+ const currentSection = allSections[i];
+ const dataNavnumber = currentSection.dataset.nav;
+ const lis = document.createElement('li');
+ const liItem = document.createElement('a');
+ liItem.href="#section"+ (i + 1);
+ liItem.innerHTML = dataNavnumber; 
+ liItem.classList.add('menu__link');
+ parentUl.append(lis);
+ lis.append(liItem);}
 //Create Nav Bar Items.
 
 
 
+//select active section
+const allNavItems = document.querySelectorAll('a');
+window.addEventListener('scroll', function (){  
+   let activeSection = ''; 
+   allSections.forEach(section =>  {
+    const sectionTop = section.offsetTop;
+    const sectionHeigth = section.clientHeight;
+      if (this.scrollY >= sectionTop) {            
+       activeSection = section.dataset.nav;      
+      section.classList.add('your-active-class');           
+    }   
+    else{
+      section.classList.remove('you-active-class');
+    }      
+    
+   });
 
+  allNavItems.forEach( currentLink => {  
+   if(activeSection.match(currentLink.innerText)){
+      currentLink.classList.add('active-nav-item');
+   }
+   else{
+      currentLink.classList.remove('active-nav-item');
+   }
+  });  
 
-//section Style
-
-window.addEventListener('scroll', function (){
-  for(let section of allSections){
-    if(section.getBoundingClientRect().top + section.getBoundingClientRect().bottom
-     <= window.innerHeight){
-      section.classList.toggle('your-active-class');
-     }  
-   }   
 });
+//select active section
 
-//section style
 
 
 //scroll on click event
-const linkArray = document.querySelectorAll('a');
-  
+const linkArray = document.querySelectorAll('a');  
    linkArray.forEach(function (LinkSelected) {
    LinkSelected.addEventListener('click',function(e){
    e.preventDefault();
-   const currentLink = document.querySelector(this.getAttribute('href')); 
-   currentLink.scrollIntoView({
-      behavior : 'smooth'      
-   });   
-   //currentLink.classList.('your-active-class');
-   
+    const currentLink = document.querySelector(this.getAttribute('href')); 
+    currentLink.scrollIntoView({     
+      behavior : 'smooth',        
+    });      
    });
 });   
 
 //scroll on click eventfun
+
+
