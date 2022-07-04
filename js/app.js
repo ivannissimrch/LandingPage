@@ -83,22 +83,23 @@ for(let i = 0;  i < allSections.length; i++){
 //select active section
 const allNavItems = document.querySelectorAll('a');
 window.addEventListener('scroll', function (){  
-   let activeSection = ''; 
+   let sectionNavRef = ''; 
    allSections.forEach(section =>  {
     const sectionTop = section.offsetTop;
-    const sectionHeigth = section.clientHeight;
-      if (this.scrollY >= sectionTop) {            
-       activeSection = section.dataset.nav;      
+    // const sectionHeigth = section.clientHeight;
+  
+      if (this.scrollY >= sectionTop - 50) {            
+        sectionNavRef = section.dataset.nav;      
       section.classList.add('your-active-class');           
     }   
     else{
       section.classList.remove('you-active-class');
-    }      
+    }    
     
    });
 
   allNavItems.forEach( currentLink => {  
-   if(activeSection.match(currentLink.innerText)){
+   if(sectionNavRef.match(currentLink.innerText)){
       currentLink.classList.add('active-nav-item');
    }
    else{
