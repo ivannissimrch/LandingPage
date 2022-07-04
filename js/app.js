@@ -1,66 +1,4 @@
 
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
-
-/**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
-
-/**
- * Define Global Variables
- * 
-*/
-
-
-/**
- * End Global Variables
- * Start Helper Functions
- * 
-*/
-
-
-
-/**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
-
-// build the nav
-
-
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
-
 //Global variables
 const allSections = document.querySelectorAll('section');
 const parentUl = document.querySelector('#navbar__list');
@@ -83,14 +21,12 @@ for(let i = 0;  i < allSections.length; i++){
 //select active section
 const allNavItems = document.querySelectorAll('a');
 window.addEventListener('scroll', function (){  
-   let sectionNavRef = ''; 
+   let sectionNavRef = '';    
    allSections.forEach(section =>  {
-    const sectionTop = section.offsetTop;
-    // const sectionHeigth = section.clientHeight;
-  
-      if (this.scrollY >= sectionTop - 50) {            
-        sectionNavRef = section.dataset.nav;      
-      section.classList.add('your-active-class');           
+   const sectionDimentions =  section.getBoundingClientRect();          
+    if (sectionDimentions.top <= 60 && sectionDimentions.bottom >= 100) {            
+       sectionNavRef = section.dataset.nav;      
+       section.classList.add('your-active-class');           
     }   
     else{
       section.classList.remove('you-active-class');
