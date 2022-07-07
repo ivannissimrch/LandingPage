@@ -3,38 +3,38 @@
 const allSections = document.querySelectorAll('section');
 const parentUl = document.querySelector('#navbar__list');
 
-//create navbar items
+//create navbar items start.
 for(let i = 0;  i < allSections.length; i++){       
  const currentSection = allSections[i];
  const dataNavnumber = currentSection.dataset.nav;
  const lis = document.createElement('li');
  const liItem = document.createElement('a');
  liItem.href="#section"+ (i + 1);
- liItem.innerHTML = dataNavnumber; 
+ liItem.innerHTML = dataNavnumber;   
  liItem.classList.add('menu__link');
  parentUl.append(lis);
- lis.append(liItem);}
-//Create Nav Bar Items.
+ lis.appendChild(liItem);}
+//Create Nav Bar Items end.
 
-
-
-//select active section
+//select active section start (for section and corresponding navbar item).
 const allNavItems = document.querySelectorAll('a');
-window.addEventListener('scroll', function (){  
-   let sectionNavRef = '';    
-   allSections.forEach(section =>  {
+window.addEventListener('scroll', function (){ 
+
+   for(let i = 0; i < allSections.length; i++){
+      allSections[i].classList.remove('your-active-class');
+   }
+
+   let sectionNavRef = '';      
+   allSections.forEach(section =>  {             
    const sectionDimentions =  section.getBoundingClientRect();          
     if (sectionDimentions.top <= 60 && sectionDimentions.bottom >= 100) {            
-       sectionNavRef = section.dataset.nav;      
-       section.classList.add('your-active-class');           
-    }   
-    else{
-      section.classList.remove('you-active-class');
+       sectionNavRef = section.dataset.nav;             
+       section.classList.add('your-active-class');            
     }    
     
-   });
+   });      
 
-  allNavItems.forEach( currentLink => {  
+  allNavItems.forEach( currentLink => {      
    if(sectionNavRef.match(currentLink.innerText)){
       currentLink.classList.add('active-nav-item');
    }
@@ -44,11 +44,9 @@ window.addEventListener('scroll', function (){
   });  
 
 });
-//select active section
+//select active section end.
 
-
-
-//scroll on click event
+//scroll on click event start.
 const linkArray = document.querySelectorAll('a');  
    linkArray.forEach(function (LinkSelected) {
    LinkSelected.addEventListener('click',function(e){
@@ -59,7 +57,6 @@ const linkArray = document.querySelectorAll('a');
     });      
    });
 });   
-
-//scroll on click eventfun
+//scroll on click event end.
 
 
