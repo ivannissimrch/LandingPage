@@ -1,39 +1,59 @@
 
-//Global variables
+/**
+ * Define Global Variables
+ * 
+*/
 const allSections = document.querySelectorAll('section');
 const parentUl = document.querySelector('#navbar__list');
+/**
+ * End Global Variables
+ * 
+*/
 
-//create navbar items start.
+/** removeClass function fix the
+    *isued of having multiple class active 
+    *at the same Time  */
+function removeClass(){
+   for(let i = 0; i < allSections.length; i++){
+      allSections[i].classList.remove('your-active-class');
+   }
+}
+/**removeclass function end */
+
+
+
+//Build NavBar 
 for(let i = 0;  i < allSections.length; i++){       
  const currentSection = allSections[i];
  const dataNavnumber = currentSection.dataset.nav;
  const lis = document.createElement('li');
  const liItem = document.createElement('a');
- liItem.href="#section"+ (i + 1);
+ liItem.href="#section"+ (i + 1); 
  liItem.innerHTML = dataNavnumber;   
  liItem.classList.add('menu__link');
  parentUl.append(lis);
  lis.appendChild(liItem);}
-//Create Nav Bar Items end.
+//Build NAvBar end.
 
-//select active section start (for section and corresponding navbar item).
-const allNavItems = document.querySelectorAll('a');
+//select active section  start (for section and corresponding navbar item).
+const allNavItems = document.querySelectorAll('a'); 
 window.addEventListener('scroll', function (){ 
+   /*/first remove active class from all elements. removeClass function fix the
+    *isued of having multiple class active 
+    *at the same Time **/
+   removeClass(); 
 
-   for(let i = 0; i < allSections.length; i++){
-      allSections[i].classList.remove('your-active-class');
-   }
-
-   let sectionNavRef = '';      
+   let sectionNavRef = ''; // we need this variable to access current section to nav link.   
+   //add active class to current section  on viewport.
    allSections.forEach(section =>  {             
    const sectionDimentions =  section.getBoundingClientRect();          
     if (sectionDimentions.top <= 60 && sectionDimentions.bottom >= 100) {            
        sectionNavRef = section.dataset.nav;             
        section.classList.add('your-active-class');            
-    }    
-    
+    }      
    });      
-
+ 
+  //access the navbar link that matches the currentsection on viewport and add active class.
   allNavItems.forEach( currentLink => {      
    if(sectionNavRef.match(currentLink.innerText)){
       currentLink.classList.add('active-nav-item');
