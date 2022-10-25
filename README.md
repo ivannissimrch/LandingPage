@@ -1,4 +1,4 @@
-     ## Udacity Landing Page Project
+     ### Landing Page 
      ## This project is a multi-section landing page, with a dynamically updating navigational menu based on the amount of content sections that are added to the page.  
 
       the section actively being viewed it has an active class so it can be distinguish from the inactive sections. Additionally, when a user clicks on a navigation item, the item scroll you to the appropriate section rather than giving you the default jump. 
